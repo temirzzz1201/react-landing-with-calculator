@@ -1,0 +1,24 @@
+.accordion {
+  position: relative;
+  font-family: Graphik;
+  &_rotate-icon {
+    transform: rotate(180deg);
+  }
+
+  &__item {
+    padding: 16px 0;
+    background: #fff;
+    z-index: 999;
+    top: 56px;
+    left: 0;
+    @media screen and (max-width: 767px) {
+      top: 78px;
+    }
+    @media screen and (max-width: 503px) {
+      top: 102px;
+    }
+    @media screen and (max-width: 357px) {
+      top: 127px;
+    }
+  }
+}

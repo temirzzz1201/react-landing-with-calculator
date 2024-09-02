@@ -1,0 +1,76 @@
+.baner {
+  // &__main-img {
+  //   max-width: 1072px;
+  //   width: 100%;
+  //   height: 720px;
+  //   @media screen and (max-width: 1024px) {
+  //     max-width: 1024px;
+  //     height: 482px;
+  //   }
+  //   @media screen and (max-width: 767px) {
+  //     max-width: 768px;
+  //     height: 307px;
+  //   }
+  //   @media screen and (max-width: 320px) {
+  //     max-width: 320px;
+  //     height: 245px;
+  //   }
+  // }
+  @media screen and (max-width: 1920px) {
+    justify-content: flex-end;
+  }
+
+  &__wrapper {
+    @media screen and (min-width: 1921px) {
+      height: 720px;
+      width: 100%;
+      margin-left: 848px;
+    }
+  }
+
+  &__main-img {
+    background-size: cover;
+    width: 100%;
+    height: 720px;
+
+    @media screen and (max-width: 1920px) {
+      background-size: unset;
+      max-width: 1072px;
+      width: 100%;
+      height: 720px;
+    }
+    @media screen and (max-width: 1024px) {
+      max-width: 1024px;
+      height: 482px;
+    }
+    @media screen and (max-width: 767px) {
+      max-width: 768px;
+      height: 307px;
+    }
+    @media screen and (max-width: 320px) {
+      max-width: 320px;
+      height: 245px;
+    }
+  }
+
+  &__bubles-img {
+    max-width: 780px;
+    height: 660px;
+    @media screen and (max-width: 1024px) {
+      max-width: 552px;
+      height: 442px;
+    }
+    @media screen and (max-width: 767px) {
+      max-width: 338px;
+      height: 287px;
+    }
+
+    @media screen and (max-width: 380px) {
+      height: 250px;
+    }
+    @media screen and (max-width: 320px) {
+      max-width: 260px;
+      height: 160px;
+    }
+  }
+}

@@ -1,0 +1,184 @@
+.calendar {
+  &__wrapper {
+    position: relative;
+  }
+
+  &__block {
+    font-size: 24px;
+    border: none;
+    background-color: transparent;
+    color: #fff;
+    outline: none;
+    padding-bottom: 12px;
+  }
+
+  &__output {
+    font-size: 24px;
+    line-height: 32px;
+    margin-bottom: 8px;
+    color: #ffffff;
+    @media screen and (max-width: 1200px) {
+      font-size: 20px;
+      line-height: 28px;
+    }
+  }
+
+  &_hidden {
+    display: none;
+  }
+  .react-datepicker {
+    border-radius: 0;
+    &__current-month {
+      display: none;
+      text-transform: uppercase;
+      color: #0a5c6d;
+    }
+
+    &__header {
+      background-color: #fff;
+      padding: 16px 16px;
+      border-bottom: none;
+    }
+
+    &__day-names {
+      margin-top: 15px;
+      font-weight: 500;
+      font-size: 16px;
+      line-height: 24px;
+      color: #9a9ca2;
+    }
+
+    &__navigation {
+      width: 24px;
+      height: 24px;
+      top: 23px;
+      &--previous {
+        left: 15px;
+      }
+      &--next {
+        right: 15px;
+      }
+    }
+
+    &__navigation-icon::before {
+      border-color: #0a5c6d;
+      border-width: 2px 2px 0 0;
+      height: 5px;
+      top: 6px;
+      width: 5px;
+    }
+
+    &__day {
+      font-size: 16px;
+      line-height: 24px;
+      font-weight: 500;
+      padding: 5px;
+      color: #343944;
+      width: 32px;
+      height: 32px;
+      border-radius: 0;
+      &:hover {
+        border-radius: 0;
+        background-color: #0a5c6d;
+        color: #fff;
+      }
+      &--selected,
+      &--keyboard-selected {
+        background-color: transparent;
+        color: #08c2f5;
+        &:hover {
+          background-color: transparent;
+          color: #08c2f5;
+        }
+      }
+    }
+
+    &__day-name {
+      width: 32px;
+      height: 24px;
+    }
+
+    &__year-read-view--down-arrow,
+    &__month-read-view--down-arrow {
+      display: none;
+    }
+
+    &__month-read-view--selected-month {
+      text-transform: capitalize;
+    }
+
+    &__month-read-view,
+    &__year-read-view {
+      font-weight: 500;
+      font-size: 16px;
+      line-height: 24px;
+      color: #343944;
+      padding: 4px 8px;
+      background: #e1e2e3;
+      border-radius: 0;
+      visibility: visible !important;
+    }
+
+    &__month-dropdown,
+    &__year-dropdown {
+      border-radius: 0;
+      border: 2px solid #08c2f5;
+      background-color: #fff;
+    }
+
+    &__month-option,
+    &__year-option {
+      border-radius: 0;
+      font-weight: 500;
+      font-size: 16px;
+      line-height: 24px;
+      color: #343944;
+      &:hover {
+        background-color: transparent;
+        color: #08c2f5;
+      }
+    }
+
+    &__navigation--years {
+      top: 0;
+      display: flex;
+      width: 32px;
+      height: 32px;
+      &:before {
+        content: '';
+        display: block;
+        position: absolute;
+        border-color: #0a5c6d;
+        border-width: 2px 2px 0 0;
+        border-style: solid;
+        height: 5px;
+        top: 6px;
+        width: 5px;
+      }
+    }
+
+    &__navigation--years-upcoming {
+      top: 4px;
+      &:before {
+        transform: rotate(-45deg);
+      }
+    }
+
+    &__navigation--years-previous {
+      &:before {
+        transform: rotate(135deg);
+      }
+    }
+
+    &__month {
+      margin: 0 16px 16px;
+    }
+  }
+
+  &__btn {
+    @media screen and (max-width: 767px) {
+      position: relative;
+      right: 25px;
+    }
+  }
+}

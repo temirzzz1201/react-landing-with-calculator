@@ -1,0 +1,18 @@
+.input-slider {
+  font-family: 'Graphik';
+  input {
+    font-size: 24px;
+    border: none;
+    background-color: transparent;
+    color: #fff;
+    outline: none;
+    -webkit-appearance: none;
+    margin-right: 12px;
+    &::-webkit-outer-spin-button,
+    &::-webkit-inner-spin-button {
+      // display: none;
+      -webkit-appearance: none;
+      margin: 0;
+    }
+  }
+}

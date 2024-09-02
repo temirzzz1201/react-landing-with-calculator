@@ -1,0 +1,454 @@
+:root {
+  --form-control-color: rebeccapurple;
+}
+
+.calculator {
+  &__radio-button {
+    width: 20px;
+    height: 20px;
+    cursor: pointer;
+    &[disabled] {
+      cursor: default;
+      opacity: 0.7;
+    }
+  }
+
+  &__image_0 {
+    fill: #fff;
+    width: 136px;
+    height: 136px;
+    @media screen and (max-width: 1279px) {
+      width: 108px;
+      height: 108px;
+    }
+    @media screen and (max-width: 1023px) {
+      width: 92px;
+      height: 92px;
+    }
+    @media screen and (max-width: 767px) {
+      width: 43px;
+      height: 43px;
+    }
+  }
+  &__image_1 {
+    width: 170px;
+    height: 170px;
+    @media screen and (max-width: 1279px) {
+      width: 136px;
+      height: 136px;
+    }
+    @media screen and (max-width: 1023px) {
+      width: 118px;
+      height: 118px;
+    }
+    @media screen and (max-width: 767px) {
+      width: 56px;
+      height: 56px;
+    }
+  }
+  &__image_2 {
+    width: 216px;
+    height: 216px;
+    @media screen and (max-width: 1279px) {
+      width: 170px;
+      height: 170px;
+    }
+    @media screen and (max-width: 1023px) {
+      width: 145px;
+      height: 145px;
+    }
+    @media screen and (max-width: 767px) {
+      width: 70px;
+      height: 70px;
+    }
+  }
+  &__image_3 {
+    width: 269px;
+    height: 269px;
+    @media screen and (max-width: 1279px) {
+      width: 214px;
+      height: 214px;
+    }
+    @media screen and (max-width: 1023px) {
+      width: 183px;
+      height: 183px;
+    }
+    @media screen and (max-width: 767px) {
+      width: 87px;
+      height: 87px;
+    }
+  }
+
+  &__output-block {
+    font-family: 'Druk';
+    font-weight: 500;
+    font-size: 44px;
+    line-height: 44px;
+    text-transform: uppercase;
+    color: #0a5c6d;
+
+    span {
+      position: relative;
+      top: -25px;
+      font-weight: 500;
+      font-size: 20px;
+      line-height: 28px;
+      color: #0a5c6d;
+    }
+  }
+}
+
+input[type='radio']:after {
+  width: 10px;
+  height: 10px;
+  border-radius: 15px;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  position: relative;
+  background-color: #e1e2e3;
+  content: '';
+  display: inline-block;
+  visibility: visible;
+  border: 2px solid #fff;
+}
+
+input[type='radio']:checked:after {
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  position: relative;
+  background-color: #da2a35;
+  content: '';
+  display: inline-block;
+  visibility: visible;
+}
+
+.radio-label {
+  cursor: pointer;
+}
+
+.calculator__tower svg {
+  overflow: hidden;
+  fill: #85aeb6;
+}
+
+.calculator__tower.active svg {
+  fill: #fff;
+}
+
+.calculator__title {
+  color: #85aeb6;
+}
+
+.calculator__title.active {
+  color: #fff;
+}
+
+.calculator__tower.active svg .tap {
+  animation: tapAnimation 2400ms;
+  animation-fill-mode: both;
+  animation-iteration-count: infinite;
+  animation-timing-function: cubic-bezier(0.645, 0.045, 0.355, 1);
+  transform-origin: 50% 40%;
+}
+.calculator__tower.active svg .rect2 {
+  animation: tapAnimation2 2400ms;
+  animation-fill-mode: both;
+  animation-iteration-count: infinite;
+  animation-timing-function: cubic-bezier(0.645, 0.045, 0.355, 1);
+}
+.calculator__tower.active svg .rect3 {
+  animation: tapAnimation3 2400ms;
+  animation-fill-mode: both;
+  animation-iteration-count: infinite;
+  animation-timing-function: cubic-bezier(0.645, 0.045, 0.355, 1);
+}
+
+@-moz-keyframes tapAnimation {
+  from {
+    transform: rotateZ(0deg);
+  }
+  50% {
+    transform: rotateZ(-20deg);
+  }
+  to {
+    transform: rotateZ(0deg);
+  }
+}
+@-webkit-keyframes tapAnimation {
+  from {
+    transform: rotateZ(0deg);
+  }
+  50% {
+    transform: rotateZ(-20deg);
+  }
+  to {
+    transform: rotateZ(0deg);
+  }
+}
+@-o-keyframes tapAnimation {
+  from {
+    transform: rotateZ(0deg);
+  }
+  50% {
+    transform: rotateZ(-20deg);
+  }
+  to {
+    transform: rotateZ(0deg);
+  }
+}
+@keyframes tapAnimation {
+  from {
+    transform: rotateZ(0deg);
+  }
+  50% {
+    transform: rotateZ(-20deg);
+  }
+  to {
+    transform: rotateZ(0deg);
+  }
+}
+@-moz-keyframes tapAnimation2 {
+  from {
+    x: 540;
+    y: 252.8;
+    width: 5.7;
+    height: 400.5;
+    transform: rotateZ(0deg);
+  }
+  50% {
+    x: 545;
+    y: 192.8;
+    width: 5.7;
+    height: 400.5;
+    transform: rotateZ(0deg);
+  }
+  to {
+    x: 540;
+    y: 252.8;
+    width: 5.7;
+    height: 400.5;
+    transform: rotateZ(0deg);
+  }
+}
+@-webkit-keyframes tapAnimation2 {
+  from {
+    x: 540;
+    y: 252.8;
+    width: 5.7;
+    height: 400.5;
+    transform: rotateZ(0deg);
+  }
+  50% {
+    x: 545;
+    y: 192.8;
+    width: 5.7;
+    height: 400.5;
+    transform: rotateZ(0deg);
+  }
+  to {
+    x: 540;
+    y: 252.8;
+    width: 5.7;
+    height: 400.5;
+    transform: rotateZ(0deg);
+  }
+}
+@-o-keyframes tapAnimation2 {
+  from {
+    x: 540;
+    y: 252.8;
+    width: 5.7;
+    height: 400.5;
+    transform: rotateZ(0deg);
+  }
+  50% {
+    x: 545;
+    y: 192.8;
+    width: 5.7;
+    height: 400.5;
+    transform: rotateZ(0deg);
+  }
+  to {
+    x: 540;
+    y: 252.8;
+    width: 5.7;
+    height: 400.5;
+    transform: rotateZ(0deg);
+  }
+}
+@keyframes tapAnimation2 {
+  from {
+    x: 540;
+    y: 252.8;
+    width: 5.7;
+    height: 400.5;
+    transform: rotateZ(0deg);
+  }
+  50% {
+    x: 545;
+    y: 192.8;
+    width: 5.7;
+    height: 400.5;
+    transform: rotateZ(0deg);
+  }
+  to {
+    x: 540;
+    y: 252.8;
+    width: 5.7;
+    height: 400.5;
+    transform: rotateZ(0deg);
+  }
+}
+@-moz-keyframes tapAnimation3 {
+  from {
+    x: 550;
+    y: 252.8;
+    width: 5.7;
+    height: 400.5;
+    transform: rotateZ(0deg);
+  }
+  50% {
+    x: 555;
+    y: 192.8;
+    width: 5.7;
+    height: 400.5;
+    transform: rotateZ(0deg);
+  }
+  to {
+    x: 550;
+    y: 252.8;
+    width: 5.7;
+    height: 400.5;
+    transform: rotateZ(0deg);
+  }
+}
+@-webkit-keyframes tapAnimation3 {
+  from {
+    x: 550;
+    y: 252.8;
+    width: 5.7;
+    height: 400.5;
+    transform: rotateZ(0deg);
+  }
+  50% {
+    x: 555;
+    y: 192.8;
+    width: 5.7;
+    height: 400.5;
+    transform: rotateZ(0deg);
+  }
+  to {
+    x: 550;
+    y: 252.8;
+    width: 5.7;
+    height: 400.5;
+    transform: rotateZ(0deg);
+  }
+}
+@-o-keyframes tapAnimation3 {
+  from {
+    x: 550;
+    y: 252.8;
+    width: 5.7;
+    height: 400.5;
+    transform: rotateZ(0deg);
+  }
+  50% {
+    x: 555;
+    y: 192.8;
+    width: 5.7;
+    height: 400.5;
+    transform: rotateZ(0deg);
+  }
+  to {
+    x: 550;
+    y: 252.8;
+    width: 5.7;
+    height: 400.5;
+    transform: rotateZ(0deg);
+  }
+}
+@keyframes tapAnimation3 {
+  from {
+    x: 550;
+    y: 252.8;
+    width: 5.7;
+    height: 400.5;
+    transform: rotateZ(0deg);
+  }
+  50% {
+    x: 555;
+    y: 192.8;
+    width: 5.7;
+    height: 400.5;
+    transform: rotateZ(0deg);
+  }
+  to {
+    x: 550;
+    y: 252.8;
+    width: 5.7;
+    height: 400.5;
+    transform: rotateZ(0deg);
+  }
+}
+@-moz-keyframes showCalcBlock {
+  from {
+    width: 0;
+    height: 5px;
+  }
+  50% {
+    width: 100%;
+    height: 5px;
+  }
+  to {
+    width: 381px;
+    height: 260px;
+  }
+}
+@-webkit-keyframes showCalcBlock {
+  from {
+    width: 0;
+    height: 5px;
+  }
+  50% {
+    width: 100%;
+    height: 5px;
+  }
+  to {
+    width: 381px;
+    height: 260px;
+  }
+}
+@-o-keyframes showCalcBlock {
+  from {
+    width: 0;
+    height: 5px;
+  }
+  50% {
+    width: 100%;
+    height: 5px;
+  }
+  to {
+    width: 381px;
+    height: 260px;
+  }
+}
+@keyframes showCalcBlock {
+  from {
+    width: 0;
+    height: 5px;
+  }
+  50% {
+    width: 100%;
+    height: 5px;
+  }
+  to {
+    width: 381px;
+    height: 260px;
+  }
+}

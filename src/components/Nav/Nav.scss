@@ -1,0 +1,58 @@
+.navbar {
+  background: #0a5c6d;
+  z-index: 99;
+  border-bottom: 1px solid #fff;
+  &__link-wrapper {
+    @media screen and (max-width: 960px) {
+      display: none;
+    }
+  }
+
+  &__phone-icon {
+    margin-top: 10px;
+    display: none;
+    @media screen and (max-width: 960px) {
+      display: block;
+      fill: #fff;
+      color: #fff;
+    }
+    @media screen and (max-width: 767px) {
+      display: none;
+    }
+  }
+
+  @media screen and (max-width: 767px) {
+    .navbar__logo {
+      width: unset;
+    }
+  }
+
+  &__logo_desc {
+    @media screen and (max-width: 767px) {
+      display: none;
+    }
+  }
+
+  &__logo_mob {
+    display: none;
+    @media screen and (max-width: 767px) {
+      display: block;
+    }
+  }
+}
+
+.navbar_sticky {
+  background: #fff;
+  border-bottom: 1px solid #e1e2e3;
+  .navbar__logo {
+    color: #343944;
+    fill: #343944;
+  }
+  .navbar__link {
+    color: #343944;
+  }
+  .navbar__phone-icon {
+    fill: #0a5c6d;
+    color: #0a5c6d;
+  }
+}

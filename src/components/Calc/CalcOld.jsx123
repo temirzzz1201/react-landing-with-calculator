@@ -1,0 +1,434 @@
+/* eslint-disable */
+import { useState, useEffect, useRef } from 'react';
+import { StyledDiv, StyledPar, StyledSpan } from '../../styled-components';
+import Input from '../../UI/Input/Input';
+import CalcCalendar from '../Calendar/CalcCalendar';
+import InputSlider from '../InputSlider/InputSlider';
+import Tabs from '../Tabs/Tabs';
+import InfoBlock from '../InfoBlock/InfoBlock';
+import Accordion from '../Accordion/Accordion';
+import Loader from '../Loader/Loader';
+import './Calc.scss';
+import { ReactComponent as OilPump } from '../../assests/images/tower-source.svg';
+
+function Calc() {
+  const [yearsValue, setYearsValue] = useState(2);
+  const [realAge, setRealAge] = useState(60);
+  const [lifeValue, setLifeValue] = useState(1);
+  const [tabIndex, setTabIndex] = useState('m');
+  const [currentDate, setCurrentDate] = useState('01.01.1971');
+  const [pensionPercentage, setPensionPercentage] = useState(1);
+  const [selary, setSelary] = useState();
+  const [loading, setLoading] = useState(true);
+  const monthVal = useRef();
+  const amountVal = useRef();
+  const capitalVal = useRef();
+  const corporateVal = useRef();
+  const checkedValMan = useRef();
+  const checkedValWomen = useRef();
+  const towerRef = useRef([]);
+
+  function reCalc() {
+    const month = monthVal.current;
+    const amount = amountVal.current;
+    const capital = capitalVal.current;
+    const corporate = corporateVal.current;
+
+    calc.changeGender(tabIndex, realAge);
+    calc.changeBirthday(currentDate);
+    calc.changeSalary(selary);
+
+    const r1 = calc.getPeriodicContribution();
+    const r2 = calc.calcTotalAmountContributions();
+    const r3 = calc.calcVolumeSavedMeans();
+    const r4 = calc.calcYourCorporatePension();
+
+    month.innerHTML = `${r1}<span>₽</span>`;
+    amount.innerHTML = `${r2}<span>₽</span>`;
+    capital.innerHTML = `${r3}<span>₽</span>`;
+    corporate.innerHTML = `${r4}<span>₽</span>`;
+  }
+
+  function chengeYearsValue(e) {
+    setYearsValue(+e.target.value);
+    setRealAge(+e.target.parentElement.lastChild.innerText.slice(0, 2));
+    if (tabIndex === 0) {
+      setRealAge(55);
+    }
+
+    reCalc();
+  }
+
+  function pensionCalc() {
+    reCalc();
+  }
+
+  function chengeLifeValue(e) {
+    setLifeValue(+e.target.value);
+    reCalc();
+  }
+
+  function getTabIndex(index) {
+    let gender = '';
+    if (index === 0) {
+      gender = 'm';
+      setYearsValue(2);
+      setRealAge(60);
+      checkedValWomen.current.firstChild.setAttribute('disabled', 'disabled');
+      checkedValMan.current.firstChild.removeAttribute('disabled', 'disabled');
+    } else {
+      gender = 'w';
+      setYearsValue(1);
+      setRealAge(55);
+      checkedValMan.current.firstChild.setAttribute('disabled', 'disabled');
+      checkedValWomen.current.firstChild.removeAttribute(
+        'disabled',
+        'disabled',
+      );
+    }
+    setTabIndex(gender);
+    reCalc();
+  }
+
+  function getCalendarDate(date) {
+    setCurrentDate(date);
+    reCalc();
+  }
+
+  function getSalary(val) {
+    setSelary(val);
+    reCalc();
+  }
+
+  function towerMovement() {
+    const towers = towerRef.current;
+
+    towers[0].classList.add('active');
+    towers.forEach((tower) => {
+      tower.addEventListener('click', function () {
+        for (let i = 0; towers.length > i; i++) {
+          if (towers[i] !== this) towers[i].classList.remove('active');
+          if (towers[i] === this) towers[i].classList.add('active');
+        }
+      });
+    });
+  }
+
+  useEffect(() => {
+    towerMovement();
+  }, []);
+
+  return (
+    <StyledDiv
+      className="calculator"
+      ff="Graphik"
+      maxWidth="1120px"
+      mWidMediaBig="840px"
+    >
+      {loading === true ? <Loader /> : ''}
+      <StyledDiv
+        disp="flex"
+        just="space-between"
+        marg="0 0 32px 0"
+        mMargMediaLap="0 0 36px  0"
+        mMargMediaTab="0 0 32px  0"
+        flexDirectionTab="column"
+      >
+        <Tabs getTabIndex={getTabIndex} />
+        <CalcCalendar getCalendarDate={getCalendarDate} />
+      </StyledDiv>
+      <StyledDiv
+        disp="flex"
+        just="space-between"
+        marg="0 0 37px 0"
+        mMargMediaLap="0 0 30px 0"
+        mMargMediaTab="0 0 34px 0"
+        flexDirectionTab="column"
+      >
+        <InputSlider getSalary={getSalary} />
+        <StyledDiv
+          maxWidth="448px"
+          wid="100%"
+          mWidMediaBig="408px"
+          mWidMediaLap="348px"
+          mWidMediaTab="288px"
+          marg="23px 0 0 0"
+          mMargMediaBig="28px 0 0 0"
+          mMargMediaTab="32px 0 0 0"
+        >
+          <StyledPar
+            fsz="16px"
+            fontMediaLap="14px"
+            lh="24px"
+            marg="0 0 16px 0"
+            mMargMediaBig="0 0 8px 0"
+            col="#85aeb6"
+            ff="Graphik"
+          >
+            Возраст выхода на пенсию
+          </StyledPar>
+          <StyledDiv disp="flex" flexDirectionTab="column">
+            <StyledDiv
+              disp="flex"
+              align="center"
+              marg="0 16px 0 0"
+              mMargMediaLap="0"
+              mMargMediaTab="0 0 20px 0"
+              ref={checkedValWomen}
+            >
+              <Input
+                type="radio"
+                className="calculator__radio-button"
+                value={1}
+                checked={yearsValue === 1 ? true : false}
+                onChange={chengeYearsValue}
+                disabled
+              />
+              <StyledPar
+                wid="98px"
+                fsz="14px"
+                lh="24px"
+                col="#fff"
+                marg="0 0 0 10px"
+                ff="Graphik"
+              >
+                55 <span>лет</span>
+              </StyledPar>
+            </StyledDiv>
+            <StyledDiv
+              disp="flex"
+              align="center"
+              mMargMediaLap="0"
+              marg="0 16px 0 0"
+              mMargMediaTab="0 0 20px 0"
+            >
+              <Input
+                type="radio"
+                className="calculator__radio-button"
+                value={2}
+                checked={yearsValue === 2 ? true : false}
+                onChange={chengeYearsValue}
+              />
+              <StyledPar
+                wid="98px"
+                fsz="14px"
+                lh="24px"
+                col="#fff"
+                marg="0 0 0 10px"
+                ff="Graphik"
+              >
+                60 лет
+              </StyledPar>
+            </StyledDiv>
+            <StyledDiv disp="flex" align="center" ref={checkedValMan}>
+              <Input
+                type="radio"
+                className="calculator__radio-button"
+                value={3}
+                checked={yearsValue === 3 ? true : false}
+                onChange={chengeYearsValue}
+              />
+              <StyledPar
+                fsz="14px"
+                lh="24px"
+                col="#fff"
+                marg="0 0 0 10px"
+                ff="Graphik"
+              >
+                65 лет
+              </StyledPar>
+            </StyledDiv>
+          </StyledDiv>
+        </StyledDiv>
+      </StyledDiv>
+      <StyledDiv
+        maxWidth="448px"
+        wid="100%"
+        marg="0 0 54px 0"
+        mWidMediaBig="348px"
+        mMargMediaBig="0 0 50px 0"
+        mMargMediaLap="0 0 48px 0"
+        mMargMediaTab="0 0 38px 0"
+      >
+        <StyledPar
+          fsz="16px"
+          fontMediaLap="14px"
+          mMargMediaBig="0 0 8px 0"
+          lh="24px"
+          marg="0 0 18px 0"
+          col="#85aeb6"
+          ff="Graphik"
+        >
+          Период выплаты пенсии
+        </StyledPar>
+        <StyledDiv disp="flex" flexDirectionTab="column">
+          <StyledDiv
+            disp="flex"
+            align="center"
+            marg="0 10px 0 0"
+            mMargMediaTab="0 0 20px 0"
+          >
+            <Input
+              type="radio"
+              className="calculator__radio-button"
+              value={1}
+              checked={lifeValue === 1 ? true : false}
+              onChange={chengeLifeValue}
+            />
+            <StyledPar
+              wid="176px"
+              widMediaLap="154px"
+              fsz="14px"
+              lh="24px"
+              col="#fff"
+              marg="0 0 0 10px"
+              ff="Graphik"
+            >
+              Пожизненно
+            </StyledPar>
+          </StyledDiv>
+          <StyledDiv disp="flex" align="center">
+            <Input
+              type="radio"
+              className="calculator__radio-button"
+              value={2}
+              checked={lifeValue === 2 ? true : false}
+              onChange={chengeLifeValue}
+            />
+            <StyledPar
+              wid="176px"
+              fsz="14px"
+              lh="24px"
+              col="#fff"
+              marg="0 0 0 10px"
+              ff="Graphik"
+            >
+              В течение 5 лет
+            </StyledPar>
+          </StyledDiv>
+        </StyledDiv>
+      </StyledDiv>
+
+      <StyledDiv
+        disp="flex"
+        just="space-between"
+        align="flex-end"
+        marg="0 0 44px 0"
+        mMargMediaBig="0 0 33px 0"
+        mMargMediaLap="0 0 30px 0"
+      >
+        {[...Array(4)].map((item, index) => (
+          <StyledDiv disp="flex" direct="column" align="center" key={index}>
+            <StyledSpan
+              fsz="16px"
+              lh="24px"
+              ff="Graphik"
+              fontMediaTab="14px"
+              col="#fff"
+            >
+              {index + 1 + '%'}
+            </StyledSpan>
+            <StyledDiv
+              className="calculator__tower"
+              ref={(el) => (towerRef.current[index] = el)}
+            >
+              <OilPump
+                cursor="pointer"
+                alt="oil-pump"
+                className={`tap st0 calculator__image calculator__image_${String(
+                  index,
+                )}`}
+                onClick={() =>
+                  pensionCalc(
+                    setPensionPercentage(
+                      calc.changePercentSalaryPensionContributions(index + 1),
+                    ),
+                  )
+                }
+                data-oil-pump={index + 1}
+              />
+            </StyledDiv>
+          </StyledDiv>
+        ))}
+      </StyledDiv>
+      <StyledDiv
+        disp="flex"
+        bacgr="#fff"
+        maxWidth="1120px"
+        wid="100%"
+        marg="0 0 32px 0"
+        mMargMediaBig="0 0 24px 0"
+        flexDirectionLap="column"
+        pad="32px 37px"
+        mPadMediaBig="20px"
+        heig="176px"
+        heigMediaBig="152px"
+        heigMediaLap="264px"
+        heigMediaTab="470px"
+      >
+        <StyledDiv
+          disp="flex"
+          flexDirectionTab="column"
+          mMargMediaLap="0 0 32px 0"
+          mMargMediaTab="0 0 24px 0"
+        >
+          <StyledDiv
+            disp="flex"
+            direct="column"
+            just="space-between"
+            mMargMediaTab="0 0 24px 0"
+          >
+            <InfoBlock
+              classname=" info-block _with_oil _first"
+              title="Ваш ежеменячный взнос"
+            />
+            <p
+              ref={monthVal}
+              className="everymonth calculator__output-block"
+            ></p>
+          </StyledDiv>
+          <StyledDiv disp="flex" direct="column" just="space-between">
+            <InfoBlock
+              classname="info-block _with_oil _second"
+              title="Сумма Ваших взносов"
+            />
+            <p
+              ref={amountVal}
+              className="totalAmountContributions calculator__output-block"
+            ></p>
+          </StyledDiv>
+        </StyledDiv>
+        <StyledDiv disp="flex" flexDirectionTab="column">
+          <StyledDiv
+            disp="flex"
+            direct="column"
+            just="space-between"
+            mMargMediaTab="0 0 24px 0"
+          >
+            <InfoBlock
+              classname="info-block _with_oil _third"
+              title="Ваши накопления с учетом доплаты от работодателя и инвестиционного дохода Фонда"
+            />
+            <p
+              ref={capitalVal}
+              className="volumeSavedMeans calculator__output-block"
+            ></p>
+          </StyledDiv>
+          <StyledDiv disp="flex" direct="column" just="space-between">
+            <InfoBlock
+              classname="info-block _with_oil _fourth"
+              title="Ваша ежемесячная корпоративная пенсия "
+            />
+            <p
+              ref={corporateVal}
+              className="yourCorporatePension calculator__output-block"
+            ></p>
+          </StyledDiv>
+        </StyledDiv>
+      </StyledDiv>
+      <Accordion />
+    </StyledDiv>
+  );
+}
+
+export default Calc;
